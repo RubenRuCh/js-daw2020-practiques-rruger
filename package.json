@@ -29,6 +29,7 @@
     "gulp-size": "^3.0.0",
     "gulp-uglify": "^3.0.2",
     "gulp-useref": "^3.1.6",
+    "jest": "^26.6.1",
     "mocha": "^6.2.3",
     "prettier": "^2.1.2",
     "standard": "^16.0.1",
@@ -39,7 +40,7 @@
     "serve:dist": "cross-env NODE_ENV=production gulp serve",
     "start": "gulp serve",
     "build": "cross-env NODE_ENV=production gulp",
-    "test": "npm run serve:test",
+    "test": "jest",
     "tasks": "gulp --tasks"
   },
   "browserslist": [
