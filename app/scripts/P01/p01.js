@@ -3,7 +3,7 @@ const NUM_COMBINATIONS = 50;
 const LENGTH_COMBINATIONS = 6;
 const MIN_VAL = 1;
 const MAX_VAL = 49;
-// eslint-disable-next-line no-array-constructor
+
 const COMBINATIONS = new Array();
 
 for (
@@ -28,12 +28,14 @@ for (
   COMBINATIONS[numCombinationsMade] = combination;
 }
 
+let counterCombinations = 1;
 for (const combination of COMBINATIONS) {
-  let message = 'Combinacion: ';
+  let message = 'Combinacion ' + counterCombinations + ': ';
 
   for (const number of combination) {
     message += '[' + number + ']';
   }
 
   console.log(message);
+  counterCombinations++;
 }
