@@ -36,6 +36,6 @@ for (const combination of COMBINATIONS) {
     message += '[' + number + ']';
   }
 
-  console.log(message);
+  document.write(`${message}<br/>`);
   counterCombinations++;
 }

@@ -1,3 +1,13 @@
+// Call for askWordsToSort and when its finish, sort the result. My approach is convert Set into Array and then sort the Array
+const SORTED_WORDS = [...askWordsToSort()].sort((a, b) =>
+  b.localeCompare(a, 'es')
+); // Reverse sort in Spanish
+
+// Finally, show the result
+for (let word of SORTED_WORDS) {
+  document.write(word + '<br/>');
+}
+
 function askWordsToSort() {
   const WORDS = new Set(); // Set to avoid repeated words
 
@@ -12,12 +22,5 @@ function askWordsToSort() {
     }
   } while (!wordIsEmpty); // Ask again if word is not empty
 
-  // Now we sort the result. My approach is convert Set into Array and then sort the Array
-  const ARRAY_WORDS = [...WORDS];
-  const SORTED_WORDS = ARRAY_WORDS.sort((a, b) => b.localeCompare(a, 'es')); // Reverse sort in Spanish
-
-  // Finally, show the result
-  for (let word of SORTED_WORDS) {
-    console.log(word);
-  }
+  return WORDS;
 }

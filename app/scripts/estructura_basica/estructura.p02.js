@@ -24,7 +24,7 @@ for (
 }
 
 // All numbers will be equal? Lets see...
-console.log('Frecuencias de aparicion...');
+document.write('Frecuencias de aparicion...<br/>');
 for (let number = MIN_VAL; number < MAX_VAL; number++) {
-  console.log('Numero ' + number + ': ' + MAP_NUMBERS.get(number));
+  document.write(`Numero ${number}: ${MAP_NUMBERS.get(number)}<br/>`);
 }

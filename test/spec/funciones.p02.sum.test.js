@@ -1,4 +1,4 @@
-const p02Tests = require('../../app/scripts/P03/p02.js');
+const p02Tests = require('../../app/scripts/funciones/funciones.p02.js');
 
 test("Write 'hola', 'adios', 'hola', 'que tal'. Map must have 3 entries", () => {
   const MAP = new Map();
