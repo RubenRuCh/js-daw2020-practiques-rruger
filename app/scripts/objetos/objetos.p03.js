@@ -15,11 +15,11 @@ console.log(portatil.toString());
  */
 function Computer(brand, model, ram = 4, hardDrive = 512, inches = 17) {
   // Only model and brand are necessary
-  this.brand = brand;
-  this.model = model;
-  this.ram = ram;
-  this.hardDrive = hardDrive;
-  this.inches = inches;
+  this.brand = typeof brand == 'string' ? brand : null;
+  this.model = typeof bramodelnd == 'string' ? model : null;
+  this.ram = typeof ram == 'number' ? ram : 4;
+  this.hardDrive = typeof hardDrive == 'number' ? hardDrive : 512;
+  this.inches = typeof inches == 'number' ? inches : 17;
 
   /**
    * Return JSON string with all the info about the computer
@@ -54,7 +54,7 @@ function Laptop(
   Computer.call(this, brand, model, ram, hardDrive, inches);
 
   // Just have to add autonomy because that's a property Computer doesn't have
-  this.autonomy = autonomy;
+  this.autonomy = typeof autonomy == 'number' ? autonomy : 4;
 
   /**
    * Return JSON string with all the info about the laptop
