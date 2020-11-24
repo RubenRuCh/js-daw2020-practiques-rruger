@@ -1,73 +1,41 @@
-let ordenador = new Computer('Corsair', 'Volt', 32, 2000, 24);
-console.log(ordenador.toString());
-
-let portatil = new Laptop('MSI', 'Ampera');
-console.log(portatil.toString());
-
 /**
- * Represent a regular computer
+ * Sort the list that's inside div#contenedor
  *
- * @param {String} brand
- * @param {String} model
- * @param {Number} ram
- * @param {Number} hardDrive
- * @param {Number} inches
+ * Delete the previus list and print the new sorted list
  */
-function Computer(brand, model, ram = 4, hardDrive = 512, inches = 17) {
-  // Only model and brand are necessary
-  this.brand = typeof brand == 'string' ? brand : null;
-  this.model = typeof bramodelnd == 'string' ? model : null;
-  this.ram = typeof ram == 'number' ? ram : 4;
-  this.hardDrive = typeof hardDrive == 'number' ? hardDrive : 512;
-  this.inches = typeof inches == 'number' ? inches : 17;
+function sortList() {
+  // Get the list
+  let unorderedList = document.querySelector('div#contenedor ul');
 
-  /**
-   * Return JSON string with all the info about the computer
-   *
-   * @return {String} info  String in JSON format that contains all the details of the computer
-   */
-  this.toString = function () {
-    let info = JSON.stringify(this);
-    return info;
-  };
+  // Get the child nodes of the list (li elements) and create an array with their text values
+  const words = new Array();
+
+  for (let child of unorderedList.children) {
+    words.push(child.textContent);
+  }
+
+  /* Array structure already sort alphabetically the elements when they are added via 
+  push, but just in case, we sort it using localeCompare with lang es */
+  const sortedWords = words.sort((a, b) => a.toString().localeCompare(b, 'es'));
+
+  // Create a new list
+  let newList = document.createElement('ul');
+
+  // For each word, we create a new element li with the text and put it inside the new list
+  for (let sortedWord of sortedWords) {
+    let newElementList = document.createElement('li');
+    newElementList.textContent = sortedWord;
+    newList.appendChild(newElementList);
+  }
+
+  // Finally, we replace the old list with the new sorted list
+  let contenedor = document.querySelector('div#contenedor');
+  contenedor.innerHTML = newList.outerHTML; // Use outerHTML to include ul tag, not only the content
 }
 
-/**
- * Represent a laptop computer
- *
- * @param {String} brand
- * @param {String} model
- * @param {Number} ram
- * @param {Number} hardDrive
- * @param {Number} inches
- * @param {Number} autonomy
- */
-function Laptop(
-  brand,
-  model,
-  ram = 4,
-  hardDrive = 256,
-  inches = 12,
-  autonomy = 4
-) {
-  // Call Computer's constructor to act like inheritance and reuse Computer's methods and properties
-  Computer.call(this, brand, model, ram, hardDrive, inches);
-
-  // Just have to add autonomy because that's a property Computer doesn't have
-  this.autonomy = typeof autonomy == 'number' ? autonomy : 4;
-
-  /**
-   * Return JSON string with all the info about the laptop
-   *
-   * Override Computer's toString
-   *
-   * @return {String} info  String in JSON format that contains all the details of the computer
-   */
-  this.toString = function () {
-    let info = JSON.stringify(this);
-    return info;
-  };
-}
-
-//module.exports.Computer = Computer;
-//module.exports.Laptop = Laptop;
+// We wait 3 seconds before ask the user if wants the list to be sorted
+window.setTimeout(() => {
+  if (window.confirm('¿Quieres ordenar las palabras de la lista?')) {
+    sortList();
+  }
+}, 3000);
