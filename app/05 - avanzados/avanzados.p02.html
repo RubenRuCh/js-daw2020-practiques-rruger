@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica Conceptos Avanzados</title>
+    <script>
+        import * as temporizador from './temporizador.js';
+
+        let container = document.querySelector('div#container');
+        let p1 = document.createElement('p');
+        let p2 = document.createElement('p');
+        
+        temporizador.cuenta(6, p1);
+        temporizador.cuenta(60, p2, 100);
+
+        container.appendChild(p1);
+        container.appendChild(p2);
+    </script>
+</head>
+<body>
+    <main>
+        <div id="container">
+            
+        </div>
+    </main>
+</body>
+</html>
