@@ -45,11 +45,11 @@ let promise = setTimer(
 );
 // If everything its correct, print 'Tiempo concluido' inside div#container
 promise.then(
-  function (response) {
+  (response) => {
     container.textContent = response;
   },
   // If the timer goes wrong, we print 'El tiempo no va bien' inside div#container
-  function (error) {
+  (error) => {
     container.textContent = error;
   }
 );

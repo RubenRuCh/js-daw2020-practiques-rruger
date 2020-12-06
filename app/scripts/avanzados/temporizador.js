@@ -5,7 +5,7 @@
  * The second one trigger reject with rejectFunction when the double of the miliseconds passed and
  * something went wrong in the first timeOut
  *
- * @param {int} miliseconds
+ * @param {Int} miliseconds
  * @param {Function} resolvFunction Function to send to resolv
  * @param {Function} rejectFunction Function to send to reject
  * @returns {promise} promise
@@ -25,25 +25,54 @@ function setTimer(miliseconds, resolvFunction, rejectFunction) {
   return promise;
 }
 
+/**
+ * Count from startNumber to 0
+ *
+ * Current number is displayed through the elementToWriteOn. The speed at which it is counted is determined by interval.
+ *
+ *
+ * @param {Int} startNumber Number to start counting from
+ * @param {Node} elementToWriteOn Element in which we are going to write the counter
+ * @param {Int} interval Interval in milliseconds between decrement and decrement
+ * @param {Function} callbackFunction Function to be executed when the count process is finished
+ */
 async function cuenta(
   startNumber,
   elementToWriteOn = document.querySelector('body'),
   interval = 1000,
-  callbackFuncion = () => {
-    return true;
-  }
+  callbackFunction = () => {}
 ) {
-  let promise = setTimer(
-    interval,
-    () => {
-      return true;
-    },
-    () => {
-      return false;
-    }
-  );
+  // We start counting and decrease 1 by 1 until we reach 0
+  var counter = startNumber;
 
-  return await promise;
+  do {
+    // Use setTimer to get a promise that represents a timer with response
+    let promise = setTimer(
+      interval,
+      () => {
+        true;
+      },
+      () => {
+        Error('Error with setTimer');
+      }
+    );
+
+    // The loop does not advance until the promise response is obtained
+    let check = await promise
+      .then((resolv) => {
+        // When time marked by interval has elapsed, we show the current number through elementToWriteOn
+        elementToWriteOn.textContent = counter--;
+      })
+      .catch((reject) => {
+        // If something went wrong in setTimer, notify it and stop the loop
+        console.log(reject.message);
+        counter = -1;
+      });
+  } while (counter >= 0);
+
+  // Finally, if we have something in callbackFunction, execute it when the count is finished
+  callbackFunction();
 }
 
+// Export these functions so we can use it elsewhere
 export { setTimer, cuenta };

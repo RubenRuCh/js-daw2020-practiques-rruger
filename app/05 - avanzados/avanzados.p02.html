@@ -4,18 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Práctica Conceptos Avanzados</title>
-    <script>
-        import * as temporizador from './temporizador.js';
+    <link rel="stylesheet" href="../styles/avanzados/avanzados.p02.css">
 
+    <script type="module">
+        // Import temporizador.js module
+        import * as temporizador from "/app/scripts/avanzados/temporizador.js";
+
+        // Create two <p> elements
         let container = document.querySelector('div#container');
         let p1 = document.createElement('p');
         let p2 = document.createElement('p');
-        
-        temporizador.cuenta(6, p1);
-        temporizador.cuenta(60, p2, 100);
+            
+        // Add some style (to a better visualization)
+        p1.classList.add('negrita');
+        p2.classList.add('negrita');
 
+        // Introduce them in the document through div#container
         container.appendChild(p1);
         container.appendChild(p2);
+
+        // Call temporizador.cuenta() on the two <p> to print the count of their respective startNumber
+        temporizador.cuenta(6, p1);
+        temporizador.cuenta(60, p2, 100, () => { p2.textContent = 'FIN'});
     </script>
 </head>
 <body>
