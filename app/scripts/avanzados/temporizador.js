@@ -50,24 +50,26 @@ async function cuenta(
     let promise = setTimer(
       interval,
       () => {
-        true;
+        // When time marked by interval has elapsed, we show the current number through elementToWriteOn
+        elementToWriteOn.textContent = counter--;
       },
       () => {
+        // If something went wrong in setTimer, create an Error
         Error('Error with setTimer');
       }
     );
 
     // The loop does not advance until the promise response is obtained
-    let check = await promise
-      .then((resolv) => {
-        // When time marked by interval has elapsed, we show the current number through elementToWriteOn
-        elementToWriteOn.textContent = counter--;
-      })
-      .catch((reject) => {
-        // If something went wrong in setTimer, notify it and stop the loop
-        console.log(reject.message);
-        counter = -1;
-      });
+    try {
+      let print = await promise;
+
+      // Execute the function passed by resolv
+      print();
+    } catch (error) {
+      // If there is an Error, notify it and stop the loop
+      console.log(reject.message);
+      counter = -1;
+    }
   } while (counter >= 0);
 
   // Finally, if we have something in callbackFunction, execute it when the count is finished
