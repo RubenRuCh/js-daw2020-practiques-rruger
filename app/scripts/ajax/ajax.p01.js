@@ -84,7 +84,7 @@ async function procesarFetch(numsecs, user) {
 
     spanName.textContent = json.first_name;
   } catch (error) {
-    status = error;
+    status = error.message;
   } finally {
     // Whatever happens, put status into screen (200 if everything went ok, 404 or 500 or something else if not)
     spanStatus.textContent = status;
