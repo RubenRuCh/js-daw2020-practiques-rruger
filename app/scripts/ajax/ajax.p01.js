@@ -64,7 +64,7 @@ async function procesarFetch(numsecs, user) {
     // Object request to insert a user
     const reqInsertUset = {
       method: 'POST',
-      body: JSON.stringify(jsonGetUser.data), // Just in case
+      body: JSON.stringify(jsonGetUser.data),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
