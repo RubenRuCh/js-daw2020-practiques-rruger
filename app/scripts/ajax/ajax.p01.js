@@ -47,7 +47,7 @@ async function procesarFetch(numsecs, user) {
     };
 
     const resGetUser = await fetch(
-      `https://reqres.in/api/users/${user}?delay=${numsecs}`,
+      `${BASE_URL}${user}?delay=${numsecs}`,
       reqGetUset
     );
 
@@ -64,16 +64,13 @@ async function procesarFetch(numsecs, user) {
     // Object request to insert a user
     const reqInsertUset = {
       method: 'POST',
-      body: JSON.stringify(jsonGetUser.data), // Just in case
+      body: JSON.stringify(jsonGetUser.data),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
     };
 
-    const resInsertUset = await fetch(
-      'https://httpbin.org/post',
-      reqInsertUset
-    );
+    const resInsertUset = await fetch(POSTMAN_URL, reqInsertUset);
 
     // If second API answer response.ok = false, throw an error
     if (!resInsertUset.ok) throw new Error(resInsertUset.status);
