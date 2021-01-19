@@ -12,18 +12,32 @@ body {
 }
 
 .hero-unit {
-  margin: 50px auto 0 auto;
-  width: 300px;
+  margin: 0 auto;
+  width: 95%;
   font-size: 18px;
   font-weight: 200;
   line-height: 30px;
   background-color: #eee;
   border-radius: 6px;
   padding: 60px;
+  text-align: center;
 }
 
 .hero-unit h1 {
   font-size: 60px;
   line-height: 1;
   letter-spacing: -1px;
+}
+
+article#actividades{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: left;
+}
+
+article#actividades section{
+  border: 1px solid black;
+  border-radius: 1rem;
+  margin: 1rem;
+  padding: 1rem;
 }

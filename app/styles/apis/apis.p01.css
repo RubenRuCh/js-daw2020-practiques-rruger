@@ -1,0 +1,31 @@
+body{
+    margin: 0 auto;
+    margin-top: 300px;
+    text-align: center;
+  }
+
+  main{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: "shd"
+                          "etd";
+  }
+
+
+  section{
+    margin: 0 0 4rem;
+    padding: 1rem;
+  }
+
+  section#showData{
+    grid-area: shd;
+  }
+
+  section#enterData{
+    grid-area: etd;
+  }
+
+  input{
+    width: 500px;
+    text-align: center;
+  }
